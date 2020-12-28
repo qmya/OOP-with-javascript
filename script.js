@@ -22,3 +22,14 @@ const matilda = new Person('Matilda', 2017);
 const qandeel = new Person('Qandeel', 1995);
 
 console.log(matilda instanceof Person); //true
+
+//PROTOTYPES 👉🏽 consists of constructor funtions
+console.log(Person.prototype); //Constructor function
+Person.prototype.calcAge = function () {
+  console.log(2020 - this.birthYear);
+};
+
+qandeel.calcAge();
+console.log(qandeel.__proto__); //{calcAge: ƒ, constructor: ƒ}// calcAge: ƒ ()// constructor: ƒ (firstName, birthYear)
+// __proto__: Object
+console.log(qandeel.__proto__ === Person.prototype); //true
