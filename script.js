@@ -33,3 +33,17 @@ qandeel.calcAge();
 console.log(qandeel.__proto__); //{calcAge: ƒ, constructor: ƒ}// calcAge: ƒ ()// constructor: ƒ (firstName, birthYear)
 // __proto__: Object
 console.log(qandeel.__proto__ === Person.prototype); //true
+
+//Prototype inheritance on builtIn objects like Arrays
+
+const arr = [3, 3, 5, 5, 9, 11, 9];
+console.log(arr.__proto__); //It will gives us all the methods of an array
+
+Array.prototype.unique = function () {
+  return [...new Set(this)];
+};
+console.log(arr.unique());
+console.log(Array.prototype);
+console.log(Array);
+
+const h1 = document.querySelector('h1');
