@@ -5,6 +5,7 @@
 
 const Person = function (firstName, birthYear) {
   console.log(this);
+  //instance properties
   this.firstName = firstName;
   this.birthYear = birthYear;
 };
@@ -16,3 +17,8 @@ console.log(jonas);
 //2. FUNCTION IS CALLED, "THIS" KEYWORD POINTS TO NEW {}
 //3.{} LINKED TO PROTOTYPE
 //4.FUNCTION AUTOMATICALLY RETURN {}
+
+const matilda = new Person('Matilda', 2017);
+const qandeel = new Person('Qandeel', 1995);
+
+console.log(matilda instanceof Person); //true
