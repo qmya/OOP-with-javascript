@@ -92,21 +92,48 @@ Mercedes.brake();
 //ES6
 //class declaration
 class PersonCl {
-  constructor(firstName, birthYear) {
-    this.firstName = firstName;
+  constructor(fullName, birthYear) {
+    this.fullName = fullName;
     this.birthYear = birthYear;
   }
   calcAge() {
     console.log(2037 - this.birthYear);
   }
   greet = function () {
-    console.log(`Hi, ${this.firstName}`);
+    console.log(`Hi, ${this.fullName}`);
   };
+  set fullName(name) {
+    console.log(name);
+    if (name.includes(' ')) this._fullName = name;
+    else {
+      console.log(`${name} is not a full name`);
+    }
+  }
+  get fullName() {
+    return this._fullName;
+  }
 }
+console.log(new PersonCl('Walter White', 1970));
 
-const purdal = new PersonCl('Purdal', 1986);
+const purdal = new PersonCl('Qandeel Mya', 1986);
 console.log(purdal);
 purdal.calcAge();
 
 console.log(purdal.__proto__ === PersonCl.prototype); //true
 purdal.greet();
+
+//getter and setter in Javascript
+
+const account = {
+  owner: 'Jonas',
+  movements: [200, 530, 120, 300],
+  get latest() {
+    return account.movements.slice(-1).pop(); //slice will give us the element on -1 and pop will remove the last element
+  },
+  set latest(mov) {
+    account.movements.push(mov);
+  },
+};
+console.log(account.latest);
+account.latest = 50; //this latest is a property is assigning value to it
+console.log(account.movements);
