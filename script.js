@@ -209,3 +209,30 @@ console.log(mike instanceof Person); //True
 console.log(mike instanceof Person); //True becoz that is also in its prototype chain
 Student.prototype.constructor = Student;
 console.dir(Student.prototype.constructor);
+
+//now to inherit Student class from Person class we use EXTENDS keyword
+
+class StudentCl extends PersonCl {
+  //extends will link the prototype behind the scenes
+  constructor(fullName, birthYear, course) {
+    //Always need to heppen first then
+    super(fullName, birthYear);
+    //we can use this keyword
+    this.course = course;
+  }
+  introduce() {
+    console.log(`My name is ${this.fullName} and I study ${this.course}`);
+  }
+  calcAge() {
+    console.log(
+      `I'm ${2037 - this.birthYear} years old, but I feel more like ${
+        2037 - this.birthYear + 10
+      }`
+    );
+  }
+}
+
+const martha = new StudentCl('Martha Jones', 2012, 'Computer Science');
+console.log(martha);
+martha.introduce();
+martha.calcAge();
