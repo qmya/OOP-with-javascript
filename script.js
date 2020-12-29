@@ -3,7 +3,7 @@
 //Creating a constructor fuction
 //constrctor first letter will be capital
 
-const Person = function (firstName, birthYear) {
+let Person = function (firstName, birthYear) {
   console.log(this);
   //instance properties
   this.firstName = firstName;
@@ -149,3 +149,63 @@ console.log(steven);
 steven.name = 'Steven';
 steven.birthYear = 1950;
 steven.calcAge();
+
+// Coding Challenge #2
+
+/* 
+1. Re-create challenge 1, but this time using an ES6 class;
+2. Add a getter called 'speedUS' which returns the current speed in mi/h (divide by 1.6);
+3. Add a setter called 'speedUS' which sets the current speed in mi/h (but converts it to km/h before storing the value, by multiplying the input by 1.6);
+4. Create a new car and experiment with the accelerate and brake methods, and with the getter and setter.
+
+DATA CAR 1: 'Ford' going at 120 km/h
+
+GOOD LUCK 😀
+*/
+
+// const CarCl{
+//   constructor(make, speed){
+//     this.make = make;
+//     this.speed = speed;
+//   }
+// set accelerate = function(){
+
+// }
+// }
+
+///////////////////////////////////////
+// Inheritance Between "Classes": Constructor Functions
+Person = function (firstName, birthYear) {
+  console.log(this);
+  //instance properties
+  this.firstName = firstName;
+  this.birthYear = birthYear;
+};
+
+Person.prototype.calcAge = function () {
+  console.log(2037 - this.birthYear);
+};
+//Now we want to inherit Student from Person construction
+//In inherited pass the same arguments but one different argument
+const Student = function (firstName, birthYear, course) {
+  Person.call(this, firstName, birthYear);
+  this.course = course;
+};
+//Linking prototypes
+Student.prototype = Object.create(Person.prototype);
+
+Student.prototype.introduce = function () {
+  console.log(`Hi my name is ${this.firstName} and I study in ${this.course}`);
+};
+const mike = new Student('Mike', 2000, 'Computer Science');
+console.log(mike);
+mike.introduce();
+
+console.log(mike.__proto__);
+console.log(mike.__proto__.__proto__);
+
+console.log(mike instanceof Student); //True
+console.log(mike instanceof Person); //True
+console.log(mike instanceof Person); //True becoz that is also in its prototype chain
+Student.prototype.constructor = Student;
+console.dir(Student.prototype.constructor);
