@@ -88,3 +88,25 @@ bmw.accelerate();
 bmw.brake();
 Mercedes.accelerate();
 Mercedes.brake();
+
+//ES6
+//class declaration
+class PersonCl {
+  constructor(firstName, birthYear) {
+    this.firstName = firstName;
+    this.birthYear = birthYear;
+  }
+  calcAge() {
+    console.log(2037 - this.birthYear);
+  }
+  greet = function () {
+    console.log(`Hi, ${this.firstName}`);
+  };
+}
+
+const purdal = new PersonCl('Purdal', 1986);
+console.log(purdal);
+purdal.calcAge();
+
+console.log(purdal.__proto__ === PersonCl.prototype); //true
+purdal.greet();
