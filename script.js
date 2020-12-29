@@ -137,3 +137,15 @@ const account = {
 console.log(account.latest);
 account.latest = 50; //this latest is a property is assigning value to it
 console.log(account.movements);
+
+//Object.create
+const PersonProto = {
+  calcAge() {
+    console.log(2037 - this.birthYear);
+  },
+};
+const steven = Object.create(PersonProto); //{} 👉🏽will create an empty object
+console.log(steven);
+steven.name = 'Steven';
+steven.birthYear = 1950;
+steven.calcAge();
