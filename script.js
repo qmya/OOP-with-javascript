@@ -266,3 +266,42 @@ const jay = Object.create(StudentProto);
 console.log(jay.__proto__);
 jay.init('Jay', 2010, 'Computer Science');
 jay.introduce();
+
+//Let suppose now do the Account example from bank app
+class Account {
+  //We say every account should have an owner
+  constructor(owner, currency, pin) {
+    this.owner = owner;
+    this.currency = currency;
+    this.pin = pin;
+    this.movements = [];
+    this.locale = navigator.language;
+    console.log(`Thanks for opening and account, ${owner}`);
+  }
+  //Public Interface of our objects
+  deposit(val) {
+    this.movements.push(val);
+  }
+  withdraw(val) {
+    this.deposit(-val);
+  }
+  approveLoan(val) {
+    return true;
+  }
+  requestLoan(val) {
+    if (this.approveLoan(val)) {
+      this.deposit(val);
+      console.log(`Loan Approved`);
+    }
+  }
+}
+
+const acc1 = new Account('Jonas', '€', 1111);
+console.log(acc1);
+console.log(acc1.pin);
+// acc1.movements.push(250);
+// acc1.movements.push(-140);
+
+acc1.deposit(250);
+acc1.withdraw(140);
+acc1.requestLoan(100);
