@@ -268,46 +268,64 @@ jay.init('Jay', 2010, 'Computer Science');
 jay.introduce();
 
 //Let suppose now do the Account example from bank app
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//Encapsulation : Private class field and Methods
+//1)Public fields
+//2)Private fields
+//3)Public Methods
+//4)Private methods
 class Account {
   //We say every account should have an owner
+  //PROTECTED property
+  //1) Public Fields(instances)
+  locale = navigator.language;
+  //2)Private fields
+  #movements = [];
+  #pin;
   constructor(owner, currency, pin) {
     this.owner = owner;
     this.currency = currency;
-    this._pin = pin;
-    //PROTECTED property
-    this._movements = [];
-    this.locale = navigator.language;
+    this.#pin = pin;
+    // //PROTECTED property
+    // this._movements = [];
+    // this.locale = navigator.language;
     console.log(`Thanks for opening and account, ${owner}`);
   }
   //Acces movements from outside correct way is:
   getMovements() {
-    return this._movements;
+    return this.#movements;
   }
 
   //Public Interface of our objects
+  //3)Public Methods
   deposit(val) {
-    this._movements.push(val);
+    this.#movements.push(val);
   }
   withdraw(val) {
     this.deposit(-val);
   }
-  _approveLoan(val) {
-    return true;
-  }
+
   requestLoan(val) {
-    if (this._approveLoan(val)) {
+    if (this.#approveLoan(val)) {
       this.deposit(val);
       console.log(`Loan Approved`);
     }
+  }
+  //4)Private methods
+  #approveLoan(val) {
+    return true;
   }
 }
 
 const acc1 = new Account('Jonas', '€', 1111);
 console.log(acc1);
-console.log(acc1.pin);
+console.log(acc1._pin);
 // acc1.movements.push(250);
 // acc1.movements.push(-140);
-console.log(acc1.getMovements());
+//console.log(acc1.getMovements());//Private field '#approveLoan' must be declared in an enclosing class
 acc1.deposit(250);
 acc1.withdraw(140);
 acc1.requestLoan(100);
+console.log(acc1.#approveLoan());
+// console.log(acc1.#movements); //Private field '#movements' must be declared in an enclosing class
+//console.log(acc1.#pin);//Private field '#pin' must be declared in an enclosing class
